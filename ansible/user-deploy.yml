@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userservice-deployment
+spec:
+  selector:
+    matchLabels:
+      app: userservice
+  replicas: 1 # only have one replica as this microservice uses an in-memory backing database
+  template:
+    metadata:
+      labels:
+        app: userservice
+    spec:
+      containers:
+      - name: userservice
+        image: 066203203749.dkr.ecr.eu-west-2.amazonaws.com/user-service:1.0.0-SNAPSHOT
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: userservice-secret
+              key: spring.datasource.username
+        - name: SPRING_DATASOURCE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: userservice-secret
+              key: spring.datasource.password
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: userservice-secret
+              key: jwt.secret
