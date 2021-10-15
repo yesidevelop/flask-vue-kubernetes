@@ -165,3 +165,9 @@ $ kubectl create -f ./kubernetes/vue-service.yml
 ```
 
 Try it out at [http://hello.world/](http://hello.world/).
+
+
+TODO:
+1. Change Postgres to Stateful Sets
+2. Create Terraform Scripts
+3. Create Ansible Scripts
