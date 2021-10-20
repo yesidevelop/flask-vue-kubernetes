@@ -33,7 +33,7 @@ spec:
             secretKeyRef:
               key: password
               name: postgres-credentials
-        image: quay.io/curriki/flask-vue-kubernetes:latest
+        image: mjhea0/flask-kubernetes:latest
         imagePullPolicy: Always
         name: flask
         resources: {}
